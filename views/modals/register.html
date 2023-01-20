@@ -1,0 +1,42 @@
+<div class="modal fade" id="register-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">🍉注册</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post">
+					<div class="mb-3">
+						<label for="register-name" class="form-label">👴昵称</label>
+						<input type="text" class="form-control" id="register-name" name="name" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">📫电子邮箱</label>
+						<input type="email" class="form-control" id="register-email" name="email" required>
+					</div>
+					<div class="mb-3">
+						<label for="register-psw" class="form-label">🔑密码</label>
+						<input type="password" class="form-control" id="register-psw" name="psw" minlength="6"
+							maxlength="15" aria-describedby="psw-help" required>
+						<div id="psw-help" class="form-text">密码长度在6到15之间。</div>
+					</div>
+					<div class="mb-4">
+						<label for="register-cpsw" class="form-label">🗝确认密码</label>
+						<input type="password" class="form-control" id="register-cpsw" minlength="6" maxlength="15"
+							aria-describedby="cpsw-help" onchange="check_form()" required>
+						<div id="cpsw-help" class="form-text">请确认刚刚输入的密码。</div>
+					</div>
+					<div class="row" style="text-align: center;">
+						<div class="col">
+							<button type="button" class="btn btn-danger" data-bs-dismiss="modal">✖取消</button>
+						</div>
+						<div class="col">
+							<button type="submit" class="btn btn-primary" id="register-btn">✅提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
