@@ -1,0 +1,29 @@
+<div class="modal fade" id="login-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">🪴登录</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post">
+					<div class="mb-3">
+						<label for="login-email" class="form-label">📫电子邮箱</label>
+						<input type="email" class="form-control" id="login-email" name="email" required>
+					</div>
+					<div class="mb-3">
+						<label for="login-psw" class="form-label">🔑密码</label>
+						<input type="password" class="form-control" id="login-psw" name="psw" minlength="6"
+							maxlength="15" aria-describedby="psw-help" required>
+						<div id="psw-help" class="form-text">密码长度在6到15之间。</div>
+					</div>
+					<br>
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">✖取消</button>
+						<button type="submit" class="btn btn-primary">✈️提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
