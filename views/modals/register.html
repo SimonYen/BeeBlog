@@ -6,7 +6,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="post">
+				<form action={{urlfor "RegisterController.Post" }} method="post">
 					<div class="mb-3">
 						<label for="register-name" class="form-label">👴昵称</label>
 						<input type="text" class="form-control" id="register-name" name="name" required>
