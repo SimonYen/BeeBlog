@@ -4,6 +4,7 @@ import (
 	"BeeBlog/database"
 	"BeeBlog/models"
 
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/server/web"
 )
 
@@ -16,10 +17,14 @@ func (receiver *RegisterController) Post() {
 	user := new(models.User)
 	err := receiver.ParseForm(user)
 	if err != nil {
-		println(err)
+		logs.Error("表单解析错误：", err)
 	}
-	user.HashPassword()
+	err = user.HashPassword()
+	if err != nil {
+		logs.Error("密码加密失败：", err)
+	}
 	//保存数据库
 	database.Handler.Insert(user)
+	//todo 添加toast
 	receiver.Redirect("/", 302)
 }
