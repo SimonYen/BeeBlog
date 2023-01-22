@@ -10,6 +10,13 @@ type HomeController struct {
 }
 
 func (receiver *HomeController) Get() {
+	//添加flash消息处理
+	//尝试获取session
+	smsg := receiver.GetSession("smsg")
+	if smsg != nil {
+		receiver.Data["success_msg"] = smsg.(string)
+		receiver.DelSession("smsg")
+	}
 	receiver.Layout = "layout/base.html"
 	receiver.TplName = "home.html"
 }

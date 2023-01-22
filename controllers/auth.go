@@ -15,7 +15,7 @@ type RegisterController struct {
 func (receiver *RegisterController) Post() {
 	//先试着看能否收到数据
 	user := new(models.User)
-	err := receiver.ParseForm(user)
+	err := receiver.ParseForm(user) //todo 添加数据校验
 	if err != nil {
 		logs.Error("表单解析错误：", err)
 	}
@@ -25,6 +25,9 @@ func (receiver *RegisterController) Post() {
 	}
 	//保存数据库
 	database.Handler.Insert(user)
-	//todo 添加toast
+	err = receiver.SetSession("smsg", "注册成功！")
+	if err != nil {
+		logs.Error("session保存失败：", err)
+	}
 	receiver.Redirect("/", 302)
 }

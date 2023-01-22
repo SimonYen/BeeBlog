@@ -4,11 +4,15 @@ go 1.18
 
 require github.com/beego/beego/v2 v2.0.1
 
-require github.com/go-sql-driver/mysql v1.7.0
+require (
+	github.com/go-sql-driver/mysql v1.7.0
+	golang.org/x/crypto v0.5.0
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
+	github.com/go-redis/redis/v7 v7.4.0 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
@@ -19,7 +23,6 @@ require (
 	github.com/prometheus/common v0.10.0 // indirect
 	github.com/prometheus/procfs v0.1.3 // indirect
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644 // indirect
-	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/mod v0.6.0-dev.0.20220419223038-86c51ed26bb4 // indirect
 	golang.org/x/net v0.5.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
