@@ -9,4 +9,6 @@ import (
 func init() {
 	web.Router("/", &controllers.HomeController{})
 	web.Router("/register", &controllers.RegisterController{})
+	web.Router("/login", &controllers.LoginController{})
+	web.Router("/logout", &controllers.LogoutController{})
 }

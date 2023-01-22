@@ -12,6 +12,11 @@ type HomeController struct {
 func (receiver *HomeController) Get() {
 	//读取flash
 	web.ReadFromRequest(&receiver.Controller)
+	//读取session，看用户是否登录过
+	name := receiver.GetSession("user_name")
+	if name != nil {
+		receiver.Data["name"] = name.(string)
+	}
 	receiver.Layout = "layout/base.html"
 	receiver.TplName = "home.html"
 }
