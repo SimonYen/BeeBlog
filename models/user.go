@@ -10,7 +10,7 @@ import (
 type User struct {
 	Id       int       `form:"-"`
 	Name     string    `form:"name"`
-	Email    string    `form:"email"`
+	Email    string    `form:"email" orm:"unique"`
 	Password string    `form:"psw"`
 	Created  time.Time `orm:"auto_now_add;type(datetime);description(用户创建时间)" form:"-"`
 	Avatar   string    `orm:"size(2048);description(用户头像保持的目录地址)" form:"-"`

@@ -13,21 +13,27 @@ type RegisterController struct {
 }
 
 func (receiver *RegisterController) Post() {
-	//先试着看能否收到数据
+	flash := web.NewFlash()
 	user := new(models.User)
-	err := receiver.ParseForm(user) //todo 添加数据校验
+	qs := database.Handler.QueryTable(user)
+	err := receiver.ParseForm(user)
 	if err != nil {
 		logs.Error("表单解析错误：", err)
 	}
-	err = user.HashPassword()
-	if err != nil {
-		logs.Error("密码加密失败：", err)
+	if qs.Filter("email", user.Email).Exist() {
+		flash.Error(user.Email + "邮箱已被注册！🫠")
+	} else {
+		err = user.HashPassword()
+		if err != nil {
+			logs.Error("密码加密失败：", err)
+		}
+		//保存数据库
+		_, err = database.Handler.Insert(user)
+		if err != nil {
+			logs.Error("数据库插入失败！", err)
+		}
+		flash.Success("注册成功！😉")
 	}
-	//保存数据库
-	database.Handler.Insert(user)
-	err = receiver.SetSession("smsg", "注册成功！")
-	if err != nil {
-		logs.Error("session保存失败：", err)
-	}
+	flash.Store(&receiver.Controller)
 	receiver.Redirect("/", 302)
 }

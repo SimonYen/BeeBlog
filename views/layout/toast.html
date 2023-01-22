@@ -1,6 +1,12 @@
-{{if .success_msg}}
+{{if .flash.success}}
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
-	<strong>{{.success_msg}}</strong>
+	<strong>{{.flash.success}}</strong>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{end}}
+{{if .flash.error}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	<strong>{{.flash.error}}</strong>
 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{end}}
