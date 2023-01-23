@@ -14,6 +14,8 @@ type User struct {
 	Password string    `form:"psw"`
 	Created  time.Time `orm:"auto_now_add;type(datetime);description(用户创建时间)" form:"-"`
 	Avatar   string    `orm:"size(2048);description(用户头像保持的目录地址)" form:"-"`
+
+	Posts []*Post `orm:"reverse(many)"`
 }
 
 //密码哈希加密

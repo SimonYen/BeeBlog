@@ -25,6 +25,7 @@ func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", dataSource)
 	orm.RegisterModel(new(models.User))
+	orm.RegisterModel(new(models.Post))
 
 	//模型迁移
 	err := orm.RunSyncdb("default", false, true)
