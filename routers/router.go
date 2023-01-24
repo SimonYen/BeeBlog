@@ -11,4 +11,5 @@ func init() {
 	web.Router("/register", &controllers.RegisterController{})
 	web.Router("/login", &controllers.LoginController{})
 	web.Router("/logout", &controllers.LogoutController{})
+	web.Router("/post/add", &controllers.PostAddController{})
 }
