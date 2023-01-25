@@ -35,12 +35,12 @@ func (receiver *PostAddController) Get() {
 func (receiver *PostAddController) Post() {
 	//读取flash
 	web.ReadFromRequest(&receiver.Controller)
+	flash := web.NewFlash()
 	//读取session，看用户是否登录过
 	name := receiver.GetSession("user_name")
 	if name != nil {
 		receiver.Data["name"] = name.(string)
 	} else {
-		flash := web.NewFlash()
 		flash.Error("请先登录！")
 		flash.Store(&receiver.Controller)
 		receiver.Redirect(web.URLFor("HomeController.Get"), 302)
@@ -59,6 +59,7 @@ func (receiver *PostAddController) Post() {
 	if err != nil {
 		logs.Error(err)
 	}
-	receiver.Layout = "layout/base.html"
-	receiver.TplName = "home.html"
+	flash.Success("文章创建成功！")
+	flash.Store(&receiver.Controller)
+	receiver.Redirect(web.URLFor("HomeController.Get"), 302)
 }

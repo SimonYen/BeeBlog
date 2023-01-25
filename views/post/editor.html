@@ -6,7 +6,7 @@
                     ➕新建文章➕
                 </div>
                 <div class="card-body">
-                    <form action="/post/add" method="post">
+                    <form action={{urlfor "PostAddController.Post"}} method="post">
                         <div class="mb-3">
                             <label for="title-input" class="form-label">文章标题</label>
                             <input type="text" class="form-control" id="title-input" name="title" required>
