@@ -8,12 +8,12 @@ import (
 	"github.com/beego/beego/v2/server/web"
 )
 
-type PostAddController struct {
+type PostController struct {
 	web.Controller
 }
 
 // 新增文章界面显示
-func (receiver *PostAddController) Get() {
+func (receiver *PostController) Create() {
 	//读取flash
 	web.ReadFromRequest(&receiver.Controller)
 	//读取session，看用户是否登录过
@@ -32,7 +32,7 @@ func (receiver *PostAddController) Get() {
 }
 
 // 保存文章
-func (receiver *PostAddController) Post() {
+func (receiver *PostController) Save() {
 	//读取flash
 	web.ReadFromRequest(&receiver.Controller)
 	flash := web.NewFlash()

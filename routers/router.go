@@ -11,6 +11,6 @@ func init() {
 	web.Router("/register", &controllers.RegisterController{})
 	web.Router("/login", &controllers.LoginController{})
 	web.Router("/logout", &controllers.LogoutController{})
-	web.Router("/post/edit", &controllers.PostAddController{})
-	web.Router("/post/add", &controllers.PostAddController{}, "post:Post")
+	web.Router("/post/create", &controllers.PostController{}, "get:Create")
+	web.Router("/post/save", &controllers.PostController{}, "post:Save")
 }
