@@ -1,9 +1,78 @@
-<h1>TESTsss!</h1>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container mt-5">
+  <div class="row">
+    <!-- 文章部分 -->
+    <div class="col-lg-8">
+      <!-- 开始渲染文章切片 -->
+      <div class="row">
+        {{range $post := .posts}}
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <h5 class="card-header">{{$post.Title}}</h5>
+            <div class="card-body">
+              <div class="small text-muted">{{$post.Created}}</div>
+              <p class="card-text">{{$post.Description}}</p>
+              <a class="btn btn-primary" href="#!">阅读 →</a>
+            </div>
+          </div>
+        </div>
+        {{end}}
+        <!-- 分页 -->
+        <nav aria-label="Pagination">
+          <hr class="my-0" />
+          <ul class="pagination justify-content-center my-4">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+            </li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- 侧边部件 -->
+    <div class="col-lg-4">
+      <!-- 搜索框 -->
+      <div class="card mb-4">
+        <div class="card-header">搜索文章</div>
+        <div class="card-body">
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..."
+              aria-describedby="button-search" />
+            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+          </div>
+        </div>
+      </div>
+      <!-- Categories widget-->
+      <div class="card mb-4">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">Web Design</a></li>
+                <li><a href="#!">HTML</a></li>
+                <li><a href="#!">Freebies</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">JavaScript</a></li>
+                <li><a href="#!">CSS</a></li>
+                <li><a href="#!">Tutorials</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Side widget-->
+      <div class="card mb-4">
+        <div class="card-header">Side Widget</div>
+        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and
+          feature the Bootstrap 5 card component!</div>
+      </div>
+    </div>
   </div>
 </div>

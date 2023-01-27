@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 	<div class="container-fluid">
-		<a class="navbar-brand" href={{urlfor "HomeController.Get" }}>
+		<a class="navbar-brand" href={{urlfor "UserController.Home" }}>
 			<img src="/static/img/bee.png" alt="未找到图片" width="32" height="32">
 			BeeBlog
 		</a>
@@ -11,10 +11,10 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" href={{urlfor "HomeController.Get" }}>🏠主页</a>
+					<a class="nav-link active" href={{urlfor "UserController.Home" }}>🏠主页</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href={{urlfor "HomeController.Get" }}>👓关于</a>
+					<a class="nav-link" href={{urlfor "UserController.Home" }}>👓关于</a>
 				</li>
 				{{if .name}}
 				<li class="nav-item">
@@ -31,7 +31,7 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">💻我的资料💻</a></li>
 						<li><a class="dropdown-item" href="#">📄我的文章📄</a></li>
-						<li><a class="dropdown-item" href={{urlfor "LogoutController.Get" }}>🏃退出登录🏃</a></li>
+						<li><a class="dropdown-item" href={{urlfor "UserController.Logout" }}>🏃退出登录🏃</a></li>
 					</ul>
 				</div>
 				{{else}}

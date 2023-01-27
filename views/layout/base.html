@@ -19,6 +19,8 @@
 	{{template "layout/toast.html" .}}
 	<!--模板继承内容-->
 	{{.LayoutContent}}
+	<!--渲染尾部-->
+	{{template "layout/footer.html"}}
 
 	<!--modal引入-->
 	{{template "modals/login.html"}}

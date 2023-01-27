@@ -13,22 +13,22 @@ type PostController struct {
 }
 
 // 新增文章界面显示
-func (receiver *PostController) Create() {
+func (p *PostController) Create() {
 	//读取flash
-	web.ReadFromRequest(&receiver.Controller)
+	web.ReadFromRequest(&p.Controller)
 	//读取session，看用户是否登录过
-	name := receiver.GetSession("user_name")
+	name := p.GetSession("user_name")
 	if name != nil {
-		receiver.Data["name"] = name.(string)
+		p.Data["name"] = name.(string)
 	} else {
 		flash := web.NewFlash()
 		flash.Error("请先登录！")
-		flash.Store(&receiver.Controller)
-		receiver.Redirect(web.URLFor("HomeController.Get"), 302)
+		flash.Store(&p.Controller)
+		p.Redirect(web.URLFor("HomeController.Get"), 302)
 		return
 	}
-	receiver.Layout = "layout/base.html"
-	receiver.TplName = "post/editor.html"
+	p.Layout = "layout/base.html"
+	p.TplName = "post/editor.html"
 }
 
 // 保存文章
