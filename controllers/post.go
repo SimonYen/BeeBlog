@@ -13,25 +13,6 @@ type PostController struct {
 	web.Controller
 }
 
-// 新增文章界面显示
-func (p *PostController) Create() {
-	//读取flash
-	web.ReadFromRequest(&p.Controller)
-	//读取session，看用户是否登录过
-	name := p.GetSession("user_name")
-	if name != nil {
-		p.Data["name"] = name.(string)
-	} else {
-		flash := web.NewFlash()
-		flash.Error("请先登录！")
-		flash.Store(&p.Controller)
-		p.Redirect(web.URLFor("HomeController.Get"), 302)
-		return
-	}
-	p.Layout = "layout/base.html"
-	p.TplName = "post/editor.html"
-}
-
 // 保存文章
 func (p *PostController) Save() {
 	//读取flash
