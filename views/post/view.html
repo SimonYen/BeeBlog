@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-4 offset-sm-4">
+            <!--文章部分-->
+            <div class="card">
+                <div class="card-header">
+                    {{.post.Title}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">🖊{{.author.Name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">📅{{date .post.Created "Y年m月d日 H时i分s秒"}}</h6>
+                    <p class="card-text">
+                        {{.post.Content}}
+                    </p>
+                    <a href="#" class="btn btn-danger">❤喜欢❤</a>
+                    <a href="#" class="btn btn-warning">★收藏★</a>
+                </div>
+            </div>
+            <!--评论部分-->
+        </div>
+    </div>
+</div>

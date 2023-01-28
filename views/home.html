@@ -9,9 +9,17 @@
           <div class="card mb-4">
             <h5 class="card-header">{{$post.Title}}</h5>
             <div class="card-body">
-              <div class="small text-muted">{{date $post.Created "创建于Y年m月d日 H时i分s秒"}}</div>
-              <p class="card-text">{{$post.Description}}</p>
-              <a class="btn btn-primary" href="#!">阅读 →</a>
+              <div class="small text-muted">
+                <span class="badge text-bg-info">
+                  {{date $post.Created "创建时间：Y年m月d日 H时i分s秒"}}
+                </span>
+              </div>
+              <p class="card-text">
+                <span class="badge text-bg-success">
+                  文章内容简述：{{$post.Description}}
+                </span>
+              </p>
+              <a class="btn btn-primary" href="/post/{{$post.Id}}">阅读 →</a>
             </div>
           </div>
         </div>
