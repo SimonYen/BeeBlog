@@ -9,14 +9,17 @@
           <div class="card mb-4">
             <h5 class="card-header">{{$post.Title}}</h5>
             <div class="card-body">
-              <div class="small text-muted">{{$post.Created}}</div>
+              <div class="small text-muted">{{date $post.Created "创建于Y年m月d日 H时i分s秒"}}</div>
               <p class="card-text">{{$post.Description}}</p>
               <a class="btn btn-primary" href="#!">阅读 →</a>
             </div>
           </div>
         </div>
+        {{else}}
+        <h1>空空如也，你可以创建一个新文章。</h1>
         {{end}}
         <!-- 分页 -->
+        {{if .posts }}
         <nav aria-label="Pagination">
           <hr class="my-0" />
           <ul class="pagination justify-content-center my-4">
@@ -30,6 +33,7 @@
             <li class="page-item"><a class="page-link" href="#!">Older</a></li>
           </ul>
         </nav>
+        {{end}}
       </div>
     </div>
     <!-- 侧边部件 -->
@@ -47,7 +51,7 @@
       </div>
       <!-- Categories widget-->
       <div class="card mb-4">
-        <div class="card-header">Categories</div>
+        <div class="card-header">分类</div>
         <div class="card-body">
           <div class="row">
             <div class="col-sm-6">
@@ -69,7 +73,7 @@
       </div>
       <!-- Side widget-->
       <div class="card mb-4">
-        <div class="card-header">Side Widget</div>
+        <div class="card-header">归档</div>
         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and
           feature the Bootstrap 5 card component!</div>
       </div>

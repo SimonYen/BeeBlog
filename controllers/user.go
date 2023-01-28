@@ -62,7 +62,7 @@ func (u *UserController) Register() {
 	//保存flash
 	flash.Store(&u.Controller)
 	//转到主页
-	u.Redirect(web.URLFor(""), 302)
+	u.Redirect(web.URLFor("UserController.Home"), 302)
 }
 
 // 用户登录
@@ -90,7 +90,7 @@ func (u *UserController) Login() {
 		flash.Error(user.Email + "邮箱未被注册！")
 	}
 	flash.Store(&u.Controller)
-	u.Redirect(web.URLFor("HomeController.Get"), 302)
+	u.Redirect(web.URLFor("UserController.Home"), 302)
 }
 
 // 用户退出登录
@@ -99,5 +99,5 @@ func (u *UserController) Logout() {
 	if err != nil {
 		logs.Error(err)
 	}
-	u.Redirect(web.URLFor("HomeController.Get"), 302)
+	u.Redirect(web.URLFor("UserController.Home"), 302)
 }

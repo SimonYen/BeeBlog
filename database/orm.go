@@ -9,7 +9,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-//创建ORM实例，用于整个APP里复用
+// 创建ORM实例，用于整个APP里复用
 var Handler orm.Ormer
 
 func init() {
@@ -20,7 +20,8 @@ func init() {
 	port, _ := web.AppConfig.Int("port")
 	database, _ := web.AppConfig.String("database")
 
-	dataSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4", username, password, host, port, database)
+	dataSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&", username, password, host, port, database)
+	dataSource += "loc=Asia%2FShanghai"
 
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", dataSource)

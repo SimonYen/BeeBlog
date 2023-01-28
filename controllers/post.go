@@ -43,7 +43,7 @@ func (receiver *PostController) Save() {
 	} else {
 		flash.Error("请先登录！")
 		flash.Store(&receiver.Controller)
-		receiver.Redirect(web.URLFor("HomeController.Get"), 302)
+		receiver.Redirect(web.URLFor("UserController.Home"), 302)
 		return
 	}
 	post := new(models.Post)
@@ -61,5 +61,5 @@ func (receiver *PostController) Save() {
 	}
 	flash.Success("文章创建成功！")
 	flash.Store(&receiver.Controller)
-	receiver.Redirect(web.URLFor("HomeController.Get"), 302)
+	receiver.Redirect(web.URLFor("UserController.Home"), 302)
 }
