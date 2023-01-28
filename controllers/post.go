@@ -88,6 +88,7 @@ func (p *PostController) Detail() {
 		p.Redirect(web.URLFor("UserController.Home"), 302) //之后应该转到404界面
 	} else {
 		//把文章和作者丢进模板就可以了
+		post.Content = post.ToHTML()
 		p.Data["post"] = post
 		//查找作者
 		author := new(models.User)
