@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-4 offset-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                aria-selected="true">💻个人资料💻</button>
+                            <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post"
+                                type="button" role="tab" aria-controls="nav-post"
+                                aria-selected="false">📄我的文章📄</button>
+                            <button class="nav-link" id="nav-comment-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-comment" type="button" role="tab" aria-controls="nav-comment"
+                                aria-selected="false">📑我的评论📑</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content pt-4" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                            aria-labelledby="nav-profile-tab" tabindex="0">
+                            <!--资料页-->
+                            <div style="text-align: center;">
+                                <img src="/static/img/avatar/0.png" alt="头像" style="width: 200px;border-radius: 50%;">
+                                <h1>📫电子邮箱：{{.user.Email}}</h1>
+                                <h1>👴昵称：{{.user.Name}}</h1>
+                                <button type="button" class="btn btn-primary">修改头像</button>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#name-modal">修改昵称</button>
+                                <button type="button" class="btn btn-danger">修改密码</button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-post" role="tabpanel" aria-labelledby="nav-post-tab"
+                            tabindex="0">...</div>
+                        <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab"
+                            tabindex="0">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

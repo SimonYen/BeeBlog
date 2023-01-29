@@ -32,6 +32,79 @@ func (u *UserController) Home() {
 	u.TplName = "home.html"
 }
 
+// 个人中心
+func (u *UserController) Profile() {
+	//读取flash
+	web.ReadFromRequest(&u.Controller)
+	flash := web.NewFlash()
+	//读取session，看用户是否登录过
+	name := u.GetSession("user_name")
+	if name == nil {
+		flash.Error("请先登录！")
+		flash.Store(&u.Controller)
+		u.Redirect(web.URLFor("UserController.Home"), 302)
+		return
+	}
+	u.Data["name"] = name.(string)
+	var posts []*models.Post
+	qs_p := database.Handler.QueryTable("post")
+	qs_u := database.Handler.QueryTable("user")
+	//查询自己的帖子
+	user_id := u.GetSession("user_id").(int)
+	_, err := qs_p.Filter("Author__Id", user_id).OrderBy("-created").All(&posts)
+	if err != nil {
+		logs.Error(err)
+	}
+	user := new(models.User)
+	err = qs_u.Filter("id", user_id).One(user)
+	if err != nil {
+		logs.Error(err)
+	}
+	u.Data["posts"] = posts
+	u.Data["user"] = user
+	u.Layout = "layout/base.html"
+	u.TplName = "profile.html"
+}
+
+// 修改名字
+func (u *UserController) Rename() {
+	//读取flash
+	web.ReadFromRequest(&u.Controller)
+	flash := web.NewFlash()
+	//读取session，看用户是否登录过
+	name := u.GetSession("user_name")
+	id := u.GetSession("user_id")
+	if name == nil {
+		flash.Error("请先登录！")
+		flash.Store(&u.Controller)
+		u.Redirect(web.URLFor("UserController.Home"), 302)
+		return
+	}
+	//获取新名字
+	new_name := u.GetString("name")
+	user := new(models.User)
+	qs := database.Handler.QueryTable(user)
+	//先找到user
+	err := qs.Filter("id", id.(int)).One(user)
+	if err != nil {
+		logs.Error(err)
+	}
+	//修改名字
+	user.Name = new_name
+	//数据库更新
+	_, err = database.Handler.Update(user, "Name")
+	if err != nil {
+		logs.Error(err)
+		flash.Error("数据库更新失败！")
+	} else {
+		flash.Success("昵称修改成功。")
+		//将session里的改过来
+		u.SetSession("user_name", new_name)
+	}
+	flash.Store(&u.Controller)
+	u.Redirect(web.URLFor("UserController.Profile"), 302)
+}
+
 // 注册用户
 func (u *UserController) Register() {
 	//初始化flash

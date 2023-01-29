@@ -29,9 +29,8 @@
 						👏欢迎你，{{.name}}
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">💻我的资料💻</a></li>
-						<li><a class="dropdown-item" href="#">📄我的文章📄</a></li>
-						<li><a class="dropdown-item" href={{urlfor "UserController.Logout" }}>🏃退出登录🏃</a></li>
+						<li><a class="dropdown-item" href={{urlfor "UserController.Profile"}}>🎏个人中心</a></li>
+						<li><a class="dropdown-item" href={{urlfor "UserController.Logout" }}>🏃退出登录</a></li>
 					</ul>
 				</div>
 				{{else}}

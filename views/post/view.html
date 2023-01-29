@@ -4,15 +4,19 @@
             <!--文章部分-->
             <div class="card">
                 <div class="card-header">
-                    {{.post.Title}}
+                    <h1>
+                        <strong>
+                            {{.post.Title}}
+                        </strong>
+                    </h1>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">🖊{{.author.Name}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">📅{{date .post.Created "Y年m月d日 H时i分s秒"}}</h6>
                     <hr>
-                    <p class="card-text">
+                    <h1 class="card-text">
                         {{str2html .post.Content}}
-                    </p>
+                    </h1>
                 </div>
             </div>
             <!--评论部分-->
