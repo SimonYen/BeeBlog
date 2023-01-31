@@ -15,4 +15,5 @@ func init() {
 	web.Router("/post/:id:int", &controllers.PostController{}, "get:Detail")
 	web.Router("/profile", &controllers.UserController{}, "get:Profile")
 	web.Router("/user/rename", &controllers.UserController{}, "post:Rename")
+	web.Router("/user/change_psw", &controllers.UserController{}, "post:ChangePassword")
 }

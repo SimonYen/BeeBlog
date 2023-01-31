@@ -105,6 +105,46 @@ func (u *UserController) Rename() {
 	u.Redirect(web.URLFor("UserController.Profile"), 302)
 }
 
+// 修改密码
+func (u *UserController) ChangePassword() {
+	//读取flash
+	web.ReadFromRequest(&u.Controller)
+	flash := web.NewFlash()
+	//读取session，看用户是否登录过
+	name := u.GetSession("user_name")
+	id := u.GetSession("user_id")
+	if name == nil {
+		flash.Error("请先登录！")
+		flash.Store(&u.Controller)
+		u.Redirect(web.URLFor("UserController.Home"), 302)
+		return
+	}
+	user := new(models.User)
+	qs := database.Handler.QueryTable(user)
+	//先找到user
+	err := qs.Filter("id", id.(int)).One(user)
+	if err != nil {
+		logs.Error(err)
+	}
+	//先看看密码是否一致
+	psw_old := u.GetString("psw-old")
+	if !user.CheckPasswordHash(psw_old) {
+		flash.Error("请先输入正确的旧密码！")
+		flash.Store(&u.Controller)
+		u.Redirect(web.URLFor("UserController.Profile"), 302)
+		return
+	}
+	//获取旧密码
+	psw_new := u.GetString("psw-new")
+	user.Password = psw_new
+	user.HashPassword()
+	//数据库修改
+	database.Handler.Update(user, "Password")
+	flash.Success("密码修改成功！")
+	flash.Store(&u.Controller)
+	u.Redirect(web.URLFor("UserController.Profile"), 302)
+}
+
 // 注册用户
 func (u *UserController) Register() {
 	//初始化flash
