@@ -165,6 +165,7 @@ func (u *UserController) Register() {
 		if err != nil {
 			logs.Error(err)
 		}
+		user.Avatar = "/static/img/avatar/0.png" //还是这招好使
 		//保存到数据库
 		_, err = database.Handler.Insert(user)
 		if err != nil {

@@ -21,7 +21,7 @@
                             aria-labelledby="nav-profile-tab" tabindex="0">
                             <!--资料页-->
                             <div style="text-align: center;">
-                                <img src="/static/img/avatar/0.png" alt="头像" style="width: 200px;border-radius: 50%;">
+                                <img src="{{.user.Avatar}}" alt="头像" style="width: 200px;border-radius: 50%;">
                                 <h1>📫电子邮箱：{{.user.Email}}</h1>
                                 <h1>👴昵称：{{.user.Name}}</h1>
                                 <button type="button" class="btn btn-primary">修改头像</button>
