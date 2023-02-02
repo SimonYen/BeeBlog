@@ -1,0 +1,21 @@
+<div class="modal fade" id="avatar-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="avatar-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="avatar-label">修改头像</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action={{urlfor "UserController.UploadAvatar" }} enctype="multipart/form-data" method="post">
+                    <div class="mb-3">
+                        <label for="avatar" class="form-label">新头像</label>
+                        <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*"
+                            required></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary">上传</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

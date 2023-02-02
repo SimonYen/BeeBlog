@@ -3,6 +3,8 @@ package controllers
 import (
 	"BeeBlog/database"
 	"BeeBlog/models"
+	"path"
+	"strconv"
 
 	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/server/web"
@@ -214,4 +216,44 @@ func (u *UserController) Logout() {
 		logs.Error(err)
 	}
 	u.Redirect(web.URLFor("UserController.Home"), 302)
+}
+
+// 上传头像
+func (u *UserController) UploadAvatar() {
+	//读取flash
+	web.ReadFromRequest(&u.Controller)
+	flash := web.NewFlash()
+	//读取session，看用户是否登录过
+	id := u.GetSession("user_id")
+	if id == nil {
+		flash.Error("请先登录！")
+		flash.Store(&u.Controller)
+		u.Redirect(web.URLFor("UserController.Home"), 302)
+		return
+	}
+	user := new(models.User)
+	qs := database.Handler.QueryTable(user)
+	//先找到user
+	err := qs.Filter("id", id.(int)).One(user)
+	if err != nil {
+		logs.Error(err)
+	}
+	//获取上传文件
+	f, h, err := u.GetFile("avatar")
+	if err != nil {
+		logs.Error(err)
+	}
+	defer f.Close()
+	//获取文件名后缀
+	suffix := path.Ext(h.Filename)
+	user.Avatar = "static/img/avatar/" + strconv.Itoa(user.Id) + suffix
+	logs.Error(user.Avatar)
+	//保存
+	u.SaveToFile("avatar", user.Avatar)
+	//数据库修改
+	user.Avatar = "/" + user.Avatar
+	database.Handler.Update(user, "Avatar")
+	flash.Success("头像上传成功！")
+	flash.Store(&u.Controller)
+	u.Redirect(web.URLFor("UserController.Profile"), 302)
 }

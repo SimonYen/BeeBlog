@@ -21,10 +21,11 @@
                             aria-labelledby="nav-profile-tab" tabindex="0">
                             <!--资料页-->
                             <div style="text-align: center;">
-                                <img src="{{.user.Avatar}}" alt="头像" style="width: 200px;border-radius: 50%;">
+                                <img src="{{.user.Avatar}}" alt="头像" width="250" height="300" class="img-thumbnail">
                                 <h1>📫电子邮箱：{{.user.Email}}</h1>
                                 <h1>👴昵称：{{.user.Name}}</h1>
-                                <button type="button" class="btn btn-primary">修改头像</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#avatar-modal">修改头像</button>
                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                     data-bs-target="#name-modal">修改昵称</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
