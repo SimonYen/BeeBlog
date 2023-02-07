@@ -1,0 +1,21 @@
+<!-- 循环生成每个删除文章对话框 -->
+{{range $post := .posts}}
+<div class="modal fade" id="delete-modal-{{$post.Id}}" tabindex="-1" aria-labelledby="delete-modal-{{$post.Id}}"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="delete-modal-{{$post.Id}}">删除文章</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				确定删除{{$post.Title}}吗？
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+				<a class="btn btn-danger" href="/post/delete/{{$post.Id}}">确定删除它了！</a>
+			</div>
+		</div>
+	</div>
+</div>
+{{end}}

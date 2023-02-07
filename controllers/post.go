@@ -80,3 +80,39 @@ func (p *PostController) Detail() {
 	p.Layout = "layout/base.html"
 	p.TplName = "post/view.html"
 }
+
+// 删除文章，注意需要事先比较下作者是否是本机登录用户
+func (p *PostController) Delete() {
+	//读取flash
+	web.ReadFromRequest(&p.Controller)
+	flash := web.NewFlash()
+	//读取session，看用户是否登录过
+	name := p.GetSession("user_name")
+	id := p.GetSession("user_id")
+	if name != nil {
+		p.Data["name"] = name
+	}
+	//获取文章id,从路由上
+	post_id, _ := strconv.Atoi(p.Ctx.Input.Param(":id"))
+	//先试着看能不能读取出来
+	post := new(models.Post)
+	qs_post := database.Handler.QueryTable(post)
+	err := qs_post.Filter("id", post_id).One(post)
+	if err != nil || post.Id == 0 {
+		flash.Error("无法从数据库中找到该文章！")
+		logs.Error(err)
+		flash.Store(&p.Controller)
+		p.Redirect(web.URLFor("UserController.Home"), 302) //之后应该转到404界面
+	} else if post.Author.Id != id.(int) {
+		flash.Error("无权删除别人的文章！")
+		flash.Store(&p.Controller)
+		p.Redirect(web.URLFor("UserController.Profile"), 302)
+
+	} else {
+		//删除文章
+		database.Handler.Delete(post)
+		flash.Success("文章删除成功。")
+		flash.Store(&p.Controller)
+		p.Redirect(web.URLFor("UserController.Profile"), 302)
+	}
+}
