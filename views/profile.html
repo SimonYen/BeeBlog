@@ -33,7 +33,29 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-post" role="tabpanel" aria-labelledby="nav-post-tab"
-                            tabindex="0">...</div>
+                            tabindex="0">
+                            {{range $post := .posts}}
+                            <div class="card my-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p><strong>{{$post.Title}}</strong></p>
+                                            <p>创建于{{date $post.Created "Y年m月d日 H时i分s秒"}}</p>
+                                            <p>最后修改于{{date $post.Updated "Y年m月d日 H时i分s秒"}}</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-primary">更改分类</button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-danger">删除文章</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{else}}
+                            <h1>少侠，你没有发过文章哦！</h1>
+                            {{end}}
+                        </div>
                         <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab"
                             tabindex="0">...</div>
                     </div>
