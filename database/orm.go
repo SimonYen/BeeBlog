@@ -19,6 +19,7 @@ func init() {
 	orm.RegisterDataBase("default", "mysql", GetDataSource())
 	orm.RegisterModel(new(models.User))
 	orm.RegisterModel(new(models.Post))
+	orm.RegisterModel(new(models.Tag))
 
 	//模型迁移
 	err := orm.RunSyncdb("default", false, true)

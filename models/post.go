@@ -14,6 +14,7 @@ type Post struct {
 	Updated     time.Time `orm:"auto_now;type(datetime);description(文章修改时间)" form:"-"`
 
 	Author *User `orm:"rel(fk)"`
+	Class  *Tag  `orm:"rel(fk)"`
 }
 
 // 主要是为了将string中的换行符给替换<br>
