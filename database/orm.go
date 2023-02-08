@@ -12,6 +12,9 @@ import (
 // 创建ORM实例，用于整个APP里复用
 var Handler orm.Ormer
 
+// 方便得到类别
+var id2name map[int]string
+
 func init() {
 	//准备连接数据库
 
@@ -27,6 +30,14 @@ func init() {
 		panic(err)
 	}
 	Handler = orm.NewOrm()
+	id2name = make(map[int]string)
+	qs := Handler.QueryTable("tag")
+	var tags []*models.Tag
+	qs.All(&tags)
+	//存入到字典中
+	for _, tag := range tags {
+		id2name[tag.Id] = tag.Name
+	}
 }
 
 // 打算将session存在mysql中，因此把dataSource引出去比较方便
@@ -42,4 +53,12 @@ func GetDataSource() string {
 	dataSource += "loc=Asia%2FShanghai"
 
 	return dataSource
+}
+
+func GetTagName(id int) string {
+	name, ok := id2name[id]
+	if ok {
+		return name
+	}
+	return "未分类"
 }

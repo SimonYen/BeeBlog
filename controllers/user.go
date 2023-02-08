@@ -24,12 +24,19 @@ func (u *UserController) Home() {
 		u.Data["name"] = name.(string)
 	}
 	var posts []*models.Post
-	qs := database.Handler.QueryTable("post")
-	_, err := qs.OrderBy("-created").All(&posts)
+	var tags []*models.Tag
+	qs_p := database.Handler.QueryTable("post")
+	qs_t := database.Handler.QueryTable("tag")
+	_, err := qs_p.OrderBy("-created").All(&posts)
+	if err != nil {
+		logs.Error(err)
+	}
+	_, err = qs_t.All(&tags)
 	if err != nil {
 		logs.Error(err)
 	}
 	u.Data["posts"] = posts
+	u.Data["tags"] = tags
 	u.Layout = "layout/base.html"
 	u.TplName = "home.html"
 }

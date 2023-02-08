@@ -9,17 +9,22 @@
           <div class="card mb-4">
             <h5 class="card-header">{{$post.Title}}</h5>
             <div class="card-body">
-              <div class="small text-muted">
+              <div class="small text-muted mb-1">
+                <span class="badge text-bg-warning">
+                  类别：{{$post.Class.Id | tag}}
+                </span>
+              </div>
+              <div class="small text-muted mb-1">
                 <span class="badge text-bg-info">
                   {{date $post.Created "创建时间：Y年m月d日 H时i分s秒"}}
                 </span>
               </div>
-              <p class="card-text">
+              <div class="small text-muted mb-2">
                 <span class="badge text-bg-success">
                   文章内容简述：{{$post.Description}}
                 </span>
-              </p>
-              <a class="btn btn-primary" href="/post/{{$post.Id}}">阅读 →</a>
+              </div>
+              <a class="btn btn-primary" href="/post/{{$post.Id}}" target="_blank">阅读 →</a>
             </div>
           </div>
         </div>
@@ -41,33 +46,20 @@
           </div>
         </div>
       </div>
-      <!-- Categories widget-->
       <div class="card mb-4">
         <div class="card-header">分类</div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-6">
-              <ul class="list-unstyled mb-0">
-                <li><a href="#!">Web Design</a></li>
-                <li><a href="#!">HTML</a></li>
-                <li><a href="#!">Freebies</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-6">
-              <ul class="list-unstyled mb-0">
-                <li><a href="#!">JavaScript</a></li>
-                <li><a href="#!">CSS</a></li>
-                <li><a href="#!">Tutorials</a></li>
-              </ul>
-            </div>
-          </div>
+          {{range $tag := .tags}}
+          <a href="#" target="_blank" class="btn btn-outline-success">{{$tag.Name}}</a>
+          {{end}}
         </div>
       </div>
-      <!-- Side widget-->
       <div class="card mb-4">
-        <div class="card-header">归档</div>
-        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and
-          feature the Bootstrap 5 card component!</div>
+        <div class="card-header">相关链接</div>
+        <div class="card-body">
+          <a href="https://github.com/SimonYen/BeeBlog" target="_blank" class="btn btn-light">项目GitHub地址</a>
+          <a href="https://xiang-simonyen.vercel.app/" target="_blank" class="btn btn-light">作者博客</a>
+        </div>
       </div>
     </div>
   </div>
