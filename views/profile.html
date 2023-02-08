@@ -40,11 +40,14 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <p><strong>{{$post.Title}}</strong></p>
+                                            <p>类别：{{$post.Class.Id | tag}}</p>
                                             <p>创建于{{date $post.Created "Y年m月d日 H时i分s秒"}}</p>
                                             <p>最后修改于{{date $post.Updated "Y年m月d日 H时i分s秒"}}</p>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-primary">更改分类</button>
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-target="#tag-modal-{{$post.Class.Id}}"
+                                                data-bs-toggle="modal">更改分类</button>
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"

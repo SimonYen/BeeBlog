@@ -18,4 +18,5 @@ func init() {
 	web.Router("/user/change_psw", &controllers.UserController{}, "post:ChangePassword")
 	web.Router("/upload", &controllers.UserController{}, "post:UploadAvatar")
 	web.Router("/post/delete/:id:int", &controllers.PostController{}, "get:Delete")
+	web.Router("/tag", &controllers.TagController{}, "post:ChangeTag")
 }

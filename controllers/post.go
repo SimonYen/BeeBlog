@@ -103,10 +103,12 @@ func (p *PostController) Delete() {
 		logs.Error(err)
 		flash.Store(&p.Controller)
 		p.Redirect(web.URLFor("UserController.Home"), 302) //之后应该转到404界面
+		return
 	} else if post.Author.Id != id.(int) {
 		flash.Error("无权删除别人的文章！")
 		flash.Store(&p.Controller)
 		p.Redirect(web.URLFor("UserController.Profile"), 302)
+		return
 
 	} else {
 		//删除文章

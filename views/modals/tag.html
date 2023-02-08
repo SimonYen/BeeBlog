@@ -1,0 +1,45 @@
+<!-- 循环生成每个更改分类对话框 -->
+{{range $post := .posts}}
+<div class="modal fade" id="tag-modal-{{$post.Class.Id}}" tabindex="-1" aria-labelledby="tag-modal-{{$post.Class.Id}}"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="tag-modal-{{$post.Class.Id}}">更改分类</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action={{urlfor "TagController.ChangeTag" }} method="post">
+					<div class="row">
+						<div class="col-6">
+							<p>文章ID</p>
+						</div>
+						<div class="col-6">
+							<input class="form-control" type="text" value="{{$post.Id}}" name="id" readonly>
+						</div>
+					</div>
+					<p>文章标题：{{$post.Title}}</p>
+					<p>
+						当前分类：{{$post.Class.Id | tag}}
+					</p>
+					<div class="row">
+						<div class="col-6">
+							变更分类为：
+						</div>
+						<div class="col-6">
+							<select class="form-select" name="tag">
+								{{range $tag := $.tags}}
+								<option value="{{$tag.Id}}">{{$tag.Name}}</option>
+								{{end}}
+							</select>
+						</div>
+					</div>
+					<div class="mt-3" style="text-align: center;">
+						<button type="submit" class="btn btn-primary">更改</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{{end}}
