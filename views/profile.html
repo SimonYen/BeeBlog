@@ -38,19 +38,21 @@
                             <div class="card my-3">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-8">
-                                            <p><strong>{{$post.Title}}</strong></p>
-                                            <p>类别：{{$post.Class.Id | tag}}</p>
-                                            <p>创建于{{date $post.Created "Y年m月d日 H时i分s秒"}}</p>
-                                            <p>最后修改于{{date $post.Updated "Y年m月d日 H时i分s秒"}}</p>
+                                        <div class="col-6 pt-4">
+                                            <p><strong>🍈标题：{{$post.Title}}</strong></p>
+                                            <p>🥝类别：{{$post.Class.Id | tag}}</p>
+                                            <p>🍎创建时间：{{date $post.Created "Y年m月d日 H时i分s秒"}}</p>
+                                            <p>🍏最后修改时间：{{date $post.Updated "Y年m月d日 H时i分s秒"}}</p>
                                         </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-primary"
+                                        <div class="col-6 pt-5">
+                                            <a href="/post/{{$post.Id}}" target="_blank"
+                                                class="btn btn-secondary mb-1">查看文章</a>
+                                            <button type="button" class="btn btn-primary mb-1"
                                                 data-bs-target="#tag-modal-{{$post.Class.Id}}"
                                                 data-bs-toggle="modal">更改分类</button>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-info mb-1" data-bs-toggle="modal"
+                                                data-bs-target="#delete-modal-{{$post.Id}}">修改文章</button>
+                                            <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal"
                                                 data-bs-target="#delete-modal-{{$post.Id}}">删除文章</button>
                                         </div>
                                     </div>
