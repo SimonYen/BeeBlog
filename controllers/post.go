@@ -37,6 +37,8 @@ func (p *PostController) Save() {
 	qs := database.Handler.QueryTable(user)
 	qs.Filter("id", p.GetSession("user_id").(int)).One(user)
 	post.Author = user
+	tag := new(models.Tag)
+	post.Class = tag
 	_, err = database.Handler.Insert(post)
 	if err != nil {
 		logs.Error(err)
