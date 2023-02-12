@@ -185,6 +185,12 @@ func (u *UserController) Register() {
 			logs.Error(err)
 		}
 		flash.Success("注册成功！")
+		//填入到session
+		u.SetSession("user_name", user.Name)
+		qs := database.Handler.QueryTable("user")
+		tmp := new(models.User)
+		qs.Filter("name", user.Name).One(tmp)
+		u.SetSession("user_id", tmp.Id)
 	}
 	//保存flash
 	flash.Store(&u.Controller)
