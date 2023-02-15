@@ -3,7 +3,7 @@
         <div class="col-md-8 offset-md-2 col-sm-4 offset-sm-4">
             <!--文章部分-->
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="text-align: center;">
                     <h1>
                         <strong>
                             {{.post.Title}}
@@ -11,15 +11,35 @@
                     </h1>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">🖊{{.author.Name}}</h5>
+                    <h6 class="card-title">🖊{{.author.Name}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">📅{{date .post.Created "Y年m月d日 H时i分s秒"}}</h6>
                     <hr>
-                    <h1 class="card-text">
+                    <h3 class="card-text">
                         {{str2html .post.Content}}
-                    </h1>
+                    </h3>
                 </div>
             </div>
             <!--评论部分-->
+            <div class="card mt-5">
+                <div class="card-body p-4">
+                    <div class="d-flex flex-start w-100">
+                        <img class="rounded-circle shadow-1-strong me-3" src={{.author.Avatar}} alt="avatar" width="65"
+                            height="65" />
+                        <div class="w-100">
+                            <h5>添加评论</h5>
+                            <form action="" method="post">
+                                <div class="form-outline">
+                                    <textarea class="form-control" name="content" rows="4"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <button type="reset" class="btn btn-danger">清空评论</button>
+                                    <button type="submit" class="btn btn-success">提交评论</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
