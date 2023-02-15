@@ -7,18 +7,18 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                                aria-selected="true">💻个人资料💻</button>
+                                aria-selected="true" style="background-color: aliceblue;">💻个人资料💻</button>
                             <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post"
-                                type="button" role="tab" aria-controls="nav-post"
-                                aria-selected="false">📄我的文章📄</button>
+                                type="button" role="tab" aria-controls="nav-post" aria-selected="false"
+                                style="background-color: antiquewhite;">📄我的文章📄</button>
                             <button class="nav-link" id="nav-comment-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-comment" type="button" role="tab" aria-controls="nav-comment"
-                                aria-selected="false">📑我的评论📑</button>
+                                aria-selected="false" style="background-color:darkgrey;">📑我的评论📑</button>
                         </div>
                     </nav>
-                    <div class="tab-content pt-4" id="nav-tabContent">
+                    <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
-                            aria-labelledby="nav-profile-tab" tabindex="0">
+                            aria-labelledby="nav-profile-tab" tabindex="0" style="background-color: aliceblue;">
                             <!--资料页-->
                             <div style="text-align: center;">
                                 <img class="rounded-circle shadow-1-strong me-3" src="{{.user.Avatar}}" alt="头像"
@@ -36,7 +36,7 @@
                         <div class="tab-pane fade" id="nav-post" role="tabpanel" aria-labelledby="nav-post-tab"
                             tabindex="0">
                             {{range $post := .posts}}
-                            <div class="card my-3">
+                            <div class="card my-3" style="background-color: antiquewhite;">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6 pt-4">
