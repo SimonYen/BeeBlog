@@ -77,6 +77,10 @@ func (p *PostController) Detail() {
 		author := new(models.User)
 		qs_user := database.Handler.QueryTable(author)
 		qs_user.Filter("id", post.Author.Id).One(author)
+		user_id := p.GetSession("user_id").(int)
+		user := new(models.User)
+		qs_user.Filter("id", user_id).One(user)
+		p.Data["user"] = user
 		p.Data["author"] = author
 		//查找评论
 		var comments []*models.Comment

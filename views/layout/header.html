@@ -27,9 +27,10 @@
 				<div class="dropdown-center">
 					<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						👏欢迎你，{{.name}}
+						<img src={{.user.Avatar}} alt="头像" class="rounded-circle" width="25" height="25">
 					</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href={{urlfor "UserController.Profile"}}>🎏个人中心</a></li>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><a class="dropdown-item" href={{urlfor "UserController.Profile" }}>🎏个人中心</a></li>
 						<li><a class="dropdown-item" href={{urlfor "UserController.Logout" }}>🏃退出登录</a></li>
 					</ul>
 				</div>

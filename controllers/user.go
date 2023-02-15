@@ -27,6 +27,10 @@ func (u *UserController) Home() {
 	var tags []*models.Tag
 	qs_p := database.Handler.QueryTable("post")
 	qs_t := database.Handler.QueryTable("tag")
+	qs_u := database.Handler.QueryTable("user")
+	user_id := u.GetSession("user_id").(int)
+	user := new(models.User)
+	qs_u.Filter("id", user_id).One(user)
 	_, err := qs_p.OrderBy("-created").All(&posts)
 	if err != nil {
 		logs.Error(err)
@@ -37,6 +41,7 @@ func (u *UserController) Home() {
 	}
 	u.Data["posts"] = posts
 	u.Data["tags"] = tags
+	u.Data["user"] = user
 	u.Layout = "layout/base.html"
 	u.TplName = "home.html"
 }

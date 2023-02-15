@@ -13,7 +13,7 @@
                                 style="background-color: antiquewhite;">📄我的文章📄</button>
                             <button class="nav-link" id="nav-comment-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-comment" type="button" role="tab" aria-controls="nav-comment"
-                                aria-selected="false" style="background-color:darkgrey;">📑我的评论📑</button>
+                                aria-selected="false" style="background-color: honeydew;">📑我的评论📑</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -66,7 +66,7 @@
                         <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab"
                             tabindex="0">
                             {{range $comment := .comments}}
-                            <div class="card my-3" style="background-color:darkgrey;">
+                            <div class="card my-3" style="background-color: honeydew;">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6 pt-4">
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-6 pt-5">
                                             <a href="/post/{{$comment.Belong.Id}}" target="_blank"
-                                                class="btn btn-light mb-1">查看评论所在文章</a>
+                                                class="btn btn-secondary mb-1">查看评论所在文章</a>
                                             <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal"
                                                 data-bs-target="">删除评论</button>
                                         </div>
