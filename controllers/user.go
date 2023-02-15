@@ -57,9 +57,11 @@ func (u *UserController) Profile() {
 	u.Data["name"] = name.(string)
 	var posts []*models.Post
 	var tags []*models.Tag
+	var comments []*models.Comment
 	qs_p := database.Handler.QueryTable("post")
 	qs_u := database.Handler.QueryTable("user")
 	qs_t := database.Handler.QueryTable("tag")
+	qs_c := database.Handler.QueryTable("comment")
 	//查询自己的帖子
 	user_id := u.GetSession("user_id").(int)
 	_, err := qs_p.Filter("Author__Id", user_id).OrderBy("-created").All(&posts)
@@ -71,10 +73,17 @@ func (u *UserController) Profile() {
 	if err != nil {
 		logs.Error(err)
 	}
+	qs_c.Filter("Author__Id", user_id).All(&comments)
+	for _, comment := range comments {
+		tmp := new(models.Post)
+		qs_p.Filter("Id", comment.Belong.Id).One(tmp)
+		comment.Belong = tmp
+	}
 	u.Data["posts"] = posts
 	u.Data["user"] = user
 	qs_t.All(&tags)
 	u.Data["tags"] = tags
+	u.Data["comments"] = comments
 	u.Layout = "layout/base.html"
 	u.TplName = "profile.html"
 }
