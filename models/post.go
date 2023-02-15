@@ -15,6 +15,8 @@ type Post struct {
 
 	Author *User `orm:"rel(fk)"`
 	Class  *Tag  `orm:"rel(fk)"`
+
+	Comments []*Comment `orm:"reverse(many)"`
 }
 
 // 主要是为了将string中的换行符给替换<br>

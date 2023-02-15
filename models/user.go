@@ -15,7 +15,8 @@ type User struct {
 	Created  time.Time `orm:"auto_now_add;type(datetime);description(用户创建时间)" form:"-"`
 	Avatar   string    `orm:"size(2048);description(用户头像保持的目录地址);default(/static/img/avatar/0.png)" form:"-"`
 
-	Posts []*Post `orm:"reverse(many)"`
+	Posts    []*Post    `orm:"reverse(many)"`
+	Comments []*Comment `orm:"reverse(many)"`
 }
 
 // 密码哈希加密
