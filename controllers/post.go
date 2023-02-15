@@ -78,6 +78,17 @@ func (p *PostController) Detail() {
 		qs_user := database.Handler.QueryTable(author)
 		qs_user.Filter("id", post.Author.Id).One(author)
 		p.Data["author"] = author
+		//查找评论
+		var comments []*models.Comment
+		qs_comment := database.Handler.QueryTable("comment")
+		qs_comment.Filter("Belong__Id", post_id).All(&comments)
+		//接着再将用户名和头像填入进去
+		for _, comment := range comments {
+			tmp := new(models.User)
+			qs_user.Filter("id", comment.Author.Id).One(tmp)
+			comment.Author = tmp
+		}
+		p.Data["comments"] = comments
 	}
 	p.Layout = "layout/base.html"
 	p.TplName = "post/view.html"
