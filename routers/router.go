@@ -20,4 +20,5 @@ func init() {
 	web.Router("/post/delete/:id:int", &controllers.PostController{}, "get:Delete")
 	web.Router("/tag", &controllers.TagController{}, "post:ChangeTag")
 	web.Router("/comment/add/:id:int", &controllers.CommentController{}, "post:Add")
+	web.Router("/comment/delete/:id:int", &controllers.CommentController{}, "get:Delete")
 }

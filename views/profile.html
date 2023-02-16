@@ -77,8 +77,8 @@
                                         <div class="col-6 pt-5">
                                             <a href="/post/{{$comment.Belong.Id}}" target="_blank"
                                                 class="btn btn-secondary mb-1">查看评论所在文章</a>
-                                            <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal"
-                                                data-bs-target="">删除评论</button>
+                                            <a class="btn btn-danger mb-1"
+                                                href="/comment/delete/{{$comment.Id}}">删除评论</a>
                                         </div>
                                     </div>
                                 </div>

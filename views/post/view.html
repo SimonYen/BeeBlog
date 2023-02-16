@@ -20,6 +20,7 @@
                 </div>
             </div>
             <!--评论部分-->
+            {{if .comments}}
             <div class="card text-dark" style="background-color:cornsilk;">
                 <div class="card-header">
                     <h4 class="mb-0">文章评论</h4>
@@ -46,6 +47,7 @@
                 <hr class="my-0" style="height: 1px;" />
                 {{end}}
             </div>
+            {{end}}
             <div class="card mt-5" style="background-color:lightgray;">
                 <div class="card-body p-4">
                     <div class="d-flex flex-start w-100">
