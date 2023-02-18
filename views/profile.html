@@ -45,14 +45,12 @@
                                             <p>🍎创建时间：{{date $post.Created "Y年m月d日 H时i分s秒"}}</p>
                                             <p>🍏最后修改时间：{{date $post.Updated "Y年m月d日 H时i分s秒"}}</p>
                                         </div>
-                                        <div class="col-6 pt-5">
+                                        <div class="col-6 py-5 mt-5" style="text-align: center;">
                                             <a href="/post/{{$post.Id}}" target="_blank"
                                                 class="btn btn-secondary mb-1">查看文章</a>
                                             <button type="button" class="btn btn-primary mb-1"
                                                 data-bs-target="#tag-modal-{{$post.Class.Id}}"
                                                 data-bs-toggle="modal">更改分类</button>
-                                            <button type="button" class="btn btn-info mb-1" data-bs-toggle="modal"
-                                                data-bs-target="#delete-modal-{{$post.Id}}">修改文章</button>
                                             <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal"
                                                 data-bs-target="#delete-modal-{{$post.Id}}">删除文章</button>
                                         </div>
@@ -74,7 +72,7 @@
                                             <p>🍎创建时间：{{date $comment.Created "Y年m月d日 H时i分s秒"}}</p>
                                             <p>🍏评论内容：{{$comment.Content}}</p>
                                         </div>
-                                        <div class="col-6 pt-5">
+                                        <div class="col-6 py-4 mt-5" style="text-align: center;">
                                             <a href="/post/{{$comment.Belong.Id}}" target="_blank"
                                                 class="btn btn-secondary mb-1">查看评论所在文章</a>
                                             <a class="btn btn-danger mb-1"
