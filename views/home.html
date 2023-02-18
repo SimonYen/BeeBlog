@@ -1,5 +1,15 @@
 <div class="container mt-5">
   <div class="row">
+    {{if .class}}
+    <div class="col-12">
+      <div class="card mb-5">
+        <h5 class="card-header">当前浏览的文章类别</h5>
+        <div class="card-body" style="text-align: center;">
+          <h1>{{.class.Name}}</h1>
+        </div>
+      </div>
+    </div>
+    {{end}}
     <!-- 文章部分 -->
     <div class="col-lg-8">
       <!-- 开始渲染文章切片 -->
@@ -49,7 +59,7 @@
         <div class="card-header">分类</div>
         <div class="card-body">
           {{range $tag := .tags}}
-          <a href="#" target="_blank" class="btn btn-outline-success mb-1">{{$tag.Name}}</a>
+          <a href="/tag/{{$tag.Id}}" class="btn btn-outline-success mb-1">{{$tag.Name}}</a>
           {{end}}
         </div>
       </div>
