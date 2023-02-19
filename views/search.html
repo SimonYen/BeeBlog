@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+            <div class="card text-bg-dark mb-5">
+                <div class="card-body" style="text-align: center;">
+                    <h1>共搜索到{{.num}}条结果</h1>
+                </div>
+            </div>
+            {{range $post := .posts}}
+            <div class="card mt-1">
+                <div class="card-body" style="text-align: center;">
+                    <p>文章标题:{{$post.Title}}</p>
+                    <a class="btn btn-primary" href="/post/{{$post.Id}}" target="_blank">阅读 →</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>

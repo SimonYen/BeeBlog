@@ -135,3 +135,44 @@ func (p *PostController) Delete() {
 		p.Redirect(web.URLFor("UserController.Profile"), 302)
 	}
 }
+
+func (p *PostController) Search() {
+	//读取flash
+	web.ReadFromRequest(&p.Controller)
+	//获取输入的关键词
+	keyword := p.GetString("keyword")
+	//读取session，看用户是否登录过
+	name := p.GetSession("user_name")
+	if name != nil {
+		p.Data["name"] = name.(string)
+	}
+	var posts []*models.Post
+	qs_u := database.Handler.QueryTable("user")
+	user_id_ := p.GetSession("user_id")
+	user := new(models.User)
+	if user_id_ != nil {
+		user_id := user_id_.(int)
+		qs_u.Filter("id", user_id).One(user)
+		p.Data["user"] = user
+	}
+	//原生查询
+	var ids []int
+	var titles []string
+	query := "SELECT id,title  FROM post WHERE title LIKE '%"
+	query += keyword
+	query += "%'"
+	num, _ := database.Handler.Raw(query).QueryRows(&ids, &titles)
+	p.Data["num"] = num
+	if num > 0 {
+		for index, id := range ids {
+			post := new(models.Post)
+			post.Id = id
+			post.Title = titles[index]
+			posts = append(posts, post)
+		}
+		p.Data["posts"] = posts
+	}
+	p.Layout = "layout/base.html"
+	p.TplName = "search.html"
+
+}

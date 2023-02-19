@@ -22,4 +22,5 @@ func init() {
 	web.Router("/tag/:id:int", &controllers.TagController{}, "get:TaggedHome")
 	web.Router("/comment/add/:id:int", &controllers.CommentController{}, "post:Add")
 	web.Router("/comment/delete/:id:int", &controllers.CommentController{}, "get:Delete")
+	web.Router("/search", &controllers.PostController{}, "get:Search")
 }

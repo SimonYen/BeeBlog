@@ -31,7 +31,10 @@
 	{{template "modals/avatar.html"}}
 
 	{{template "modals/delete.html" .}}
+	{{if .num}}
+	{{else}}
 	{{template "modals/tag.html" .}}
+	{{end}}
 
 	<script src="/static/js/bootstrap.bundle.min.js"></script>
 	<script src="/static/js/register.js"></script>
